@@ -81,19 +81,19 @@ cube('Orders', {
     },
   },
 
-  pre_aggregations: {
-    // Pré-agrégation mensuelle — charge instantanée sur le dashboard
-    monthlyRevenue: {
-      measures: [totalRevenue, totalProfit, count],
-      time_dimension: orderDate,
-      granularity: 'month',
-    },
-    // Par statut
-    byStatus: {
-      measures: [count, totalRevenue],
-      dimensions: [status],
-      time_dimension: orderDate,
-      granularity: 'month',
-    },
-  },
+  // pre_aggregations: {
+  //   // Pré-agrégation mensuelle — charge instantanée sur le dashboard
+  //   monthlyRevenue: {
+  //     measures: [totalRevenue, totalProfit, count],
+  //     time_dimension: orderDate,
+  //     granularity: 'month',
+  //   },
+  //   // Par statut
+  //   byStatus: {
+  //     measures: [count, totalRevenue],
+  //     dimensions: [status],
+  //     time_dimension: orderDate,
+  //     granularity: 'month',
+  //   },
+  // },
 });
