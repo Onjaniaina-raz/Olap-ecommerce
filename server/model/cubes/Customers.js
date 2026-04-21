@@ -14,13 +14,10 @@ cube('Customers', {
       type: 'number',
       primary_key: true,
     },
-    firstName: {
-      sql: 'first_name',
+    name: {
+      sql: `CONCAT(first_name, ' ', last_name)`,
       type: 'string',
-    },
-    lastName: {
-      sql: 'last_name',
-      type: 'string',
+      title: 'Nom complet',
     },
     segment: {
       sql: 'segment',

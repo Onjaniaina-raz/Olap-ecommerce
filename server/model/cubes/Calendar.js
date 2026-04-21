@@ -28,10 +28,5 @@ cube('Calendar', {
       type: 'number',
       title: 'Mois',
     },
-    isWeekend: {
-      sql: 'is_weekend',
-      type: 'boolean',
-      title: 'Week-end',
-    },
   },
 });
