@@ -17,5 +17,15 @@ services:
       timeout: 5s
       retries: 5
 
+  cubestore:
+    image: cubejs/cubestore:latest
+    container_name: olap_cubestore
+    restart: unless-stopped
+    ports:
+      - "3030:3030"
+    volumes:
+      - cubestore_data:/cube/data
+
 volumes:
   postgres_data:
+  cubestore_data:

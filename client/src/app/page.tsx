@@ -5,6 +5,7 @@ import KpiCard from '@/components/KpiCard';
 import RevenueChart from '@/components/RevenueChart';
 import CategoryChart from '@/components/CategoryChart';
 import RegionChart from '@/components/RegionChart';
+import PerformanceComparison from '@/components/PerformanceComparison';
 
 const YEARS = ['2023', '2024'];
 
@@ -126,6 +127,8 @@ export default function Dashboard() {
           <RegionChart dateRange={dateRange} />
         </div>
       </div>
+
+      <PerformanceComparison />
     </main>
   );
 }

@@ -75,25 +75,30 @@ cube('Orders', {
       title: 'Statut',
     },
     orderDate: {
-      sql: 'date_id',
+      sql: `${Orders}.date_id`,
       type: 'time',
       title: 'Date de commande',
+      public: false,
     },
   },
 
-  // pre_aggregations: {
-  //   // Pré-agrégation mensuelle — charge instantanée sur le dashboard
-  //   monthlyRevenue: {
-  //     measures: [totalRevenue, totalProfit, count],
-  //     time_dimension: orderDate,
-  //     granularity: 'month',
-  //   },
-  //   // Par statut
-  //   byStatus: {
-  //     measures: [count, totalRevenue],
-  //     dimensions: [status],
-  //     time_dimension: orderDate,
-  //     granularity: 'month',
-  //   },
-  // },
+  pre_aggregations: {
+    monthlyRevenue: {
+      measures: [totalRevenue, totalProfit, count],
+      timeDimension: orderDate,
+      granularity: 'month',
+      refreshKey: {
+        every: '1 hour',
+      },
+    },
+    byStatus: {
+      measures: [count, totalRevenue],
+      dimensions: [status],
+      timeDimension: orderDate,
+      granularity: 'month',
+      refreshKey: {
+        every: '1 hour',
+      },
+    },
+  },
 });
