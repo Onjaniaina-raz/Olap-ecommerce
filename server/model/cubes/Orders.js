@@ -88,7 +88,7 @@ cube('Orders', {
       timeDimension: orderDate,
       granularity: 'month',
       refreshKey: {
-        every: '1 hour',
+        every: '1 day',
       },
     },
     byStatus: {
@@ -101,4 +101,4 @@ cube('Orders', {
       },
     },
   },
-});
+}); 

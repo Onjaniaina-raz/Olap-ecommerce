@@ -115,7 +115,7 @@ export default function PerformanceComparison() {
         />
         <BenchmarkBar
           label="2ème requête"
-          sublabel="lecture depuis Cube Store ⚡"
+          sublabel="lecture depuis Cube Store "
           ms={secondMs}
           max={max}
           color="bg-green-400"

@@ -1,8 +1,7 @@
--- ============================================================
--- DIMENSIONS
--- ============================================================
 
--- Dimension Calendrier (pré-remplie par le seed)
+-- DIMENSIONS
+
+-- Dimension Dates
 CREATE TABLE IF NOT EXISTS dim_calendar (
     date_id       DATE PRIMARY KEY,
     day           INT,
@@ -43,9 +42,9 @@ CREATE TABLE IF NOT EXISTS dim_products (
     cost_price    NUMERIC(10,2)
 );
 
--- ============================================================
+
 -- TABLE DE FAITS
--- ============================================================
+
 
 CREATE TABLE IF NOT EXISTS fact_orders (
     order_id      SERIAL PRIMARY KEY,
@@ -65,9 +64,7 @@ CREATE TABLE IF NOT EXISTS fact_orders (
     status        VARCHAR(50)     -- 'completed', 'returned', 'cancelled'
 );
 
--- ============================================================
 -- INDEX (performance des requêtes OLAP)
--- ============================================================
 
 CREATE INDEX idx_orders_date     ON fact_orders(date_id);
 CREATE INDEX idx_orders_customer ON fact_orders(customer_id);

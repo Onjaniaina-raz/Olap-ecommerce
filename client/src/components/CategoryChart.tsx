@@ -5,7 +5,15 @@ import {
   Tooltip, ResponsiveContainer, Cell,
 } from 'recharts';
 
-const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'];
+const COLORS = [
+  "#60a5fa", 
+  "#34d399", 
+  "#fbbf24", 
+  "#f87171", 
+  "#a78bfa", 
+  "#f472b6", 
+  "#2dd4bf", 
+];
 
 interface Props {
   dateRange: [string, string];

@@ -8,7 +8,7 @@ console.log('Utilisateur:', process.env.POSTGRES_USER);
 console.log('Password:', process.env.POSTGRES_PASSWORD);
 console.log('--------------------------');
 
-// ── Config ────────────────────────────────────────────────
+// Config
 const client = new Client({
   host:     'localhost',
   port:     process.env.POSTGRES_PORT || 5444,
@@ -17,7 +17,6 @@ const client = new Client({
   database: process.env.POSTGRES_DB,
 });
 
-// ── Constantes ────────────────────────────────────────────
 const START_DATE  = new Date('2023-01-01');
 const END_DATE    = new Date('2024-12-31');
 const N_CUSTOMERS = 500;
@@ -43,7 +42,6 @@ const CATEGORIES = [
 const SEGMENTS  = ['New', 'Loyal', 'VIP'];
 const STATUSES  = ['completed', 'completed', 'completed', 'returned', 'cancelled'];
 
-// ── Helpers ───────────────────────────────────────────────
 function randomBetween(min, max) {
   return Math.random() * (max - min) + min;
 }
@@ -88,13 +86,13 @@ function getWeekNumber(d) {
   return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
 }
 
-// ── Main ──────────────────────────────────────────────────
+
 async function seed() {
   await client.connect();
-  console.log('✅ Connecté à PostgreSQL');
+  console.log('Connecté à PostgreSQL');
 
   // 1. Calendrier
-  console.log('📅 Insertion du calendrier...');
+  console.log('Insertion du calendrier...');
   const calendar = generateCalendar(START_DATE, END_DATE);
   for (const row of calendar) {
     await client.query(
@@ -105,7 +103,7 @@ async function seed() {
   console.log(`   → ${calendar.length} jours insérés`);
 
   // 2. Régions
-  console.log('🗺️  Insertion des régions...');
+  console.log('Insertion des régions...');
   const regionIds = [];
   for (const r of REGIONS) {
     const res = await client.query(
@@ -117,7 +115,7 @@ async function seed() {
   console.log(`   → ${regionIds.length} régions insérées`);
 
   // 3. Clients
-  console.log('👥 Insertion des clients...');
+  console.log('Insertion des clients...');
   const customerIds = [];
   for (let i = 0; i < N_CUSTOMERS; i++) {
     const regionId = regionIds[Math.floor(Math.random() * regionIds.length)];
@@ -139,7 +137,7 @@ async function seed() {
   console.log(`   → ${customerIds.length} clients insérés`);
 
   // 4. Produits
-  console.log('📦 Insertion des produits...');
+  console.log('Insertion des produits...');
   const products = [];
   for (let i = 0; i < N_PRODUCTS; i++) {
     const catObj     = CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)];
@@ -156,7 +154,7 @@ async function seed() {
   console.log(`   → ${products.length} produits insérés`);
 
   // 5. Commandes
-  console.log('🛒 Insertion des commandes...');
+  console.log('Insertion des commandes...');
   for (let i = 0; i < N_ORDERS; i++) {
     const product    = products[Math.floor(Math.random() * products.length)];
     const customerId = customerIds[Math.floor(Math.random() * customerIds.length)];
@@ -181,11 +179,11 @@ async function seed() {
     if ((i + 1) % 2000 === 0) console.log(`   → ${i + 1}/${N_ORDERS} commandes...`);
   }
 
-  console.log('✅ Seed terminé avec succès !');
+  console.log('Seed terminé avec succès !');
   await client.end();
 }
 
 seed().catch(err => {
-  console.error('❌ Erreur seed :', err);
+  console.error('Erreur seed :', err);
   process.exit(1);
 });
